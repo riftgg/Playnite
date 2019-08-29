@@ -1,0 +1,28 @@
+pipeline {
+  agent {
+    docker {
+      image 'microsoft/dotnet:2.2-sdk'
+    }
+  }
+  environment {
+    HOME = '/tmp'
+  }
+  stages {
+    stage('Generate nupkg') {
+      steps {
+        dir("source/PlayniteCore") {
+          sh 'dotnet pack -c Release PlayniteCore.csproj /p:Version=$(./git-version-gen Version.txt)'
+          archiveArtifacts 'bin/Release/PlayniteCore.*.nupkg'
+        }
+      }
+    }
+    stage('Push nupkg') {
+      environment {
+        NUGET_API_KEY = credentials("nuget-api-key")
+      }
+      steps {
+        sh "dotnet nuget push source/PlayniteCore/bin/Release/PlayniteCore.*.nupkg -k $NUGET_API_KEY -s $NUGET_SERVER"
+      }
+    }
+  }
+}
