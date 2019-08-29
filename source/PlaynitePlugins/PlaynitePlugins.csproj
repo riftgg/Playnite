@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Playnite.SDK.NetStandard\Playnite.SDK.NetStandard.csproj" />
+    <ProjectReference Include="..\PlayniteCore\PlayniteCore.csproj" />
+    <ProjectReference Include="..\Plugins\BattleNetLibraryCore\BattleNetLibrary.NetCore.csproj" />
+    <ProjectReference Include="..\Plugins\EpicLibraryCore\EpicLibraryCore.csproj" />
+    <ProjectReference Include="..\Plugins\OriginLibraryCore\OriginLibraryCore.csproj" />
+    <ProjectReference Include="..\Plugins\SteamLibraryCore\SteamLibraryCore.csproj" />
+  </ItemGroup>
+
+</Project>
