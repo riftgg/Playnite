@@ -217,7 +217,7 @@ namespace Playnite.Common
                 throw new DirectoryNotFoundException($"Cannot watch directory processes, {directory} not found.");
             }
 
-            watcherToken = new CancellationTokenSource();      
+            watcherToken = new CancellationTokenSource();
             var startedCalled = false;
             var processStarted = false;
             var failCount = 0;
@@ -245,7 +245,7 @@ namespace Playnite.Common
                             }
                         }
                     }
-                }                
+                }
                 catch (Exception e) when (failCount < 5)
                 {
                     // This shouldn't happen, but there were some crash reports from Process.GetProcesses
@@ -267,11 +267,11 @@ namespace Playnite.Common
 
                 await Task.Delay(2000);
             }
-        }            
+        }
 
         private async Task WatchProcess(Process process)
         {
-            watcherToken = new CancellationTokenSource();            
+            watcherToken = new CancellationTokenSource();
             var ids = new List<int>() { process.Id };
             var failCount = 0;
 
@@ -323,12 +323,26 @@ namespace Playnite.Common
 
         private void OnTreeStarted()
         {
-            execContext.Post((a) => TreeStarted?.Invoke(this, EventArgs.Empty), null);
+            if (execContext != null)
+            {
+                execContext.Post((a) => TreeStarted?.Invoke(this, EventArgs.Empty), null);
+            }
+            else
+            {
+                TreeStarted?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void OnTreeDestroyed()
         {
-            execContext.Post((a) => TreeDestroyed?.Invoke(this, EventArgs.Empty), null);
+            if (execContext != null)
+            {
+                execContext.Post((a) => TreeDestroyed?.Invoke(this, EventArgs.Empty), null);
+            }
+            else
+            {
+                TreeDestroyed?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 }
