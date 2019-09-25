@@ -25,6 +25,8 @@ namespace Playnite
                     return ProcessStarter.StartUrl(action.Path);
                 case GameActionType.Emulator:
                     throw new Exception("Cannot start emulated game without emulator.");
+                case GameActionType.CMD:
+                    return ProcessStarter.StartProcessWithCMD(action.Path, action.Arguments, action.WorkingDir);
             }
 
             return null;

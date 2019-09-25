@@ -50,7 +50,7 @@ namespace RiotLibrary
                             Name = product.Name,
                             PlayAction = new GameAction()
                             {
-                                Type = GameActionType.File,
+                                Type = GameActionType.CMD,
                                 WorkingDir = ExpandableVariables.InstallationDirectory,
                                 Path = Path.Combine(prog.InstallLocation, product.ExePath),
                                 IsHandledByPlugin = true
