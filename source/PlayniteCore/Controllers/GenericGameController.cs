@@ -33,7 +33,7 @@ namespace Playnite.Controllers
             OnStarting(this, new GameControllerEventArgs(this, 0));
             var proc = GameActionActivator.ActivateAction(playAction);
 
-            if (playAction.Type != GameActionType.URL)
+            if (playAction.Type != GameActionType.URL && playAction.Type != GameActionType.CMD)
             {
                 stopWatch = Stopwatch.StartNew();
                 procMon = new ProcessMonitor();

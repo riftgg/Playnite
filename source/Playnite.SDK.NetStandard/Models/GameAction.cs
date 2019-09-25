@@ -25,7 +25,11 @@ namespace Playnite.SDK.Models
         /// <summary>
         /// Game action starts an emulator.
         /// </summary>
-        Emulator = 2
+        Emulator = 2,
+        /// <summary>
+        /// Game action executes trhough cmd /c start, to avoid the game have a parent
+        /// </summary>
+        CMD = 3,
     }
 
     /// <summary>
@@ -173,7 +177,7 @@ namespace Playnite.SDK.Models
                 OnPropertyChanged();
             }
         }
-        
+
         /// <inheritdoc/>
         public override string ToString()
         {

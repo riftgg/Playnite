@@ -36,6 +36,8 @@ namespace PlaynitePlugins
             {
                 gameLibrary.PlayGame(games.ElementAt(index));
             }
+
+            Console.ReadLine();
         }
     }
 }
