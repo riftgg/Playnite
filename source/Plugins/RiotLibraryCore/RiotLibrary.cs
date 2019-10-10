@@ -2,6 +2,7 @@
 using Playnite.SDK;
 using Playnite.SDK.Models;
 using Playnite.SDK.Plugins;
+using RiotLibraryCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -106,6 +107,11 @@ namespace RiotLibrary
             }
 
             return allGames;
+        }
+
+        public override IGameController GetGameController(Game game)
+        {
+            return new RiotGameController(game);
         }
 
         #endregion ILibraryPlugin
